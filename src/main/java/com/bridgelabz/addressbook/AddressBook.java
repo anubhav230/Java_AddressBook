@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class AddressBook {
     static int count=0;
     static int flag=1;
-    //static int flag2=1;
     static Person person = new Person();
     static Scanner scanner = new Scanner(System.in);
     static List<Person> book=new ArrayList<>();
@@ -46,10 +45,20 @@ public class AddressBook {
 
     //method to add person full details
     public static void addPerson() {
-        int flag2=1;
-        while (flag2==1) {
+        boolean flag=true;
+        if (count>0) {
+            System.out.println("Enter First name of person");
+            String name=scanner.next();
+            for (int i=0; i<book.size(); i++) {
+                if (name.equals(book.get(i).getFristName())) {
+                    System.out.println("Person already exist");
+                    flag=false;
+                }
+            }
 
+        }
 
+        if (flag) {
             Person person = new Person();
             System.out.println("Enter first name");
             String firstName = scanner.next();
@@ -71,11 +80,8 @@ public class AddressBook {
             person.setZip(zip);
             book.add(person);
             count++;
-            System.out.println("Enter option\n 1 = add new person\n 2 = exit");
-            flag2=scanner.nextInt();
-            if (flag2 !=1)
-                flag2=2;
         }
+
     }
     //method for deleting person from addressbook
     public static void deletePerson() {
