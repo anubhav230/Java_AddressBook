@@ -1,9 +1,11 @@
 package com.bridgelabz.addressbook;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class AddressBook {
-    static int flag=1;
+    static List<Person> book=new ArrayList<>();
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Person person = new Person();
@@ -25,7 +27,7 @@ public class AddressBook {
         System.out.println("Enter zip");
         int zip = scanner.nextInt();
         person.setZip(zip);
-
-        System.out.println(person);
+        book.add(person);
+        System.out.println(book);
     }
 }
