@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class AddressBook {
     static int count=0;
     static int flag=1;
+    //static int flag2=1;
     static Person person = new Person();
     static Scanner scanner = new Scanner(System.in);
     static List<Person> book=new ArrayList<>();
@@ -15,7 +16,7 @@ public class AddressBook {
         while(flag==1) {
             Scanner scanner2 = new Scanner(System.in);
 
-            System.out.println("Select option: \n" +
+            System.out.println("Choose option: \n" +
                     " 1 = Add person\n" +
                     " 2 = Display\n" +
                     " 3 = Edit person\n" +
@@ -45,29 +46,36 @@ public class AddressBook {
 
     //method to add person full details
     public static void addPerson() {
+        int flag2=1;
+        while (flag2==1) {
 
-        Person person = new Person();
-        System.out.println("Enter first name");
-        String firstName = scanner.next();
-        person.setFristName(firstName);
-        System.out.println("Enter last name");
-        String lastName = scanner.next();
-        person.setLastName(lastName);
-        System.out.println("Enter mobile number");
-        long mobileNumber = scanner.nextLong();
-        person.setMobileNumber(mobileNumber);
-        System.out.println("Enter State");
-        String stete = scanner.next();
-        person.setState(stete);
-        System.out.println("Enter city");
-        String city = scanner.next();
-        person.setCity(city);
-        System.out.println("Enter zip");
-        int zip = scanner.nextInt();
-        person.setZip(zip);
-        book.add(person);
-        count++;
 
+            Person person = new Person();
+            System.out.println("Enter first name");
+            String firstName = scanner.next();
+            person.setFristName(firstName);
+            System.out.println("Enter last name");
+            String lastName = scanner.next();
+            person.setLastName(lastName);
+            System.out.println("Enter mobile number");
+            long mobileNumber = scanner.nextLong();
+            person.setMobileNumber(mobileNumber);
+            System.out.println("Enter State");
+            String stete = scanner.next();
+            person.setState(stete);
+            System.out.println("Enter city");
+            String city = scanner.next();
+            person.setCity(city);
+            System.out.println("Enter zip");
+            int zip = scanner.nextInt();
+            person.setZip(zip);
+            book.add(person);
+            count++;
+            System.out.println("Enter option\n 1 = add new person\n 2 = exit");
+            flag2=scanner.nextInt();
+            if (flag2 !=1)
+                flag2=2;
+        }
     }
     //method for deleting person from addressbook
     public static void deletePerson() {
@@ -78,15 +86,16 @@ public class AddressBook {
             int index=0;
             for (int i=0; i<book.size(); i++) {
                 if (name.equals(book.get(i).getFristName())) {
-                    isFound=true;
-                    index=i;
+                    isFound = true;
+                    index = i;
+
+                    if (isFound) {
+                        book.remove(index);
+                        count--;
+                        System.out.println("Person has been removed from book");
+                    } else
+                        System.out.println("No person exist by this name");
                 }
-                if (isFound) {
-                    book.remove(index);
-                    count--;
-                    System.out.println("Person has been removed from book");
-                } else
-                    System.out.println("No person exist by this name");
             }
 
 
