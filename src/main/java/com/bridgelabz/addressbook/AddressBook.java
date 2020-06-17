@@ -18,8 +18,9 @@ public class AddressBook {
                     " 2 = Display\n" +
                     " 3 = Edit person\n" +
                     " 4 = Delete aperson\n" +
-                    " 5 = Sort by name\n" +
-                    " 6 = Quit");
+                    " 5 = Sort by Name\n" +
+                    " 6 = Sort by Zip\n" +
+                    " 7 = Quit");
 
             int choice = scanner2.nextInt();
             switch (choice) {
@@ -39,6 +40,9 @@ public class AddressBook {
                     sortByName();
                     break;
                 case 6:
+                    sortByZip();
+                    break;
+                case 7:
                     flag = 2;
                     break;
             }
@@ -148,7 +152,7 @@ public class AddressBook {
 
     }//editPerson()
 
-    //method for sorting data with first name
+    //method for sorting data with first name by bubble short
     public static void sortByName() {
         for (int i=0;i<book.size();i++) {
             for (int j=1;j<book.size()-i;j++) {
@@ -163,7 +167,26 @@ public class AddressBook {
                 }
             }
         }
+        System.out.println("---Details has been shorted---");
+
     }//sortByName()
 
+    //method for sorting data by zip code with bubble sort
+    public static void sortByZip() {
+        for (int i=0;i<book.size();i++) {
+            for (int j=1;j<book.size()-i;j++) {
+                if (book.get(j-1).getZip() > book.get(j).getZip()) {
+                    Collections.swap(book,j-1,j);
+                }
+                else if (book.get(j-1).getZip() == book.get(j).getZip()) {
+                    if (book.get(j-1).getFristName().compareTo(book.get(j).getFristName())>0) {
+                        Collections.swap(book,j-1,j);
+                    }
 
-}
+                }
+            }
+        }
+        System.out.println("---Details has been shorted---");
+    }//sortByZip()
+
+}//class
