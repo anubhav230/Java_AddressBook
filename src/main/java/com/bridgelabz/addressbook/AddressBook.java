@@ -18,9 +18,8 @@ public class AddressBook {
                     " 2 = Display\n" +
                     " 3 = Edit person\n" +
                     " 4 = Delete aperson\n" +
-                    " 5 = Sort by Name\n" +
-                    " 6 = Sort by Zip\n" +
-                    " 7 = Quit");
+                    " 5 = Sort data\n" +
+                    " 6 = Quit");
 
             int choice = scanner2.nextInt();
             switch (choice) {
@@ -37,14 +36,32 @@ public class AddressBook {
                     deletePerson();
                     break;
                 case 5:
-                    sortByName();
+                    System.out.println("Choose option: \n" +
+                            " 1 = Sort by name\n" +
+                            " 2 = Sort by Zip\n" +
+                            " 3 = Sort by state\n" +
+                            " 4 = Sort by city");
+                    int choice2=scanner2.nextInt();
+                    switch (choice2) {
+                        case 1:
+                            sortByName();
+                            break;
+                        case 2:
+                            sortByZip();
+                            break;
+                        case 3:
+                            sortByState();
+                            break;
+                        case 4:
+                            sortByCity();
+                            break;
+                    }
+
                     break;
                 case 6:
-                    sortByZip();
-                    break;
-                case 7:
                     flag = 2;
                     break;
+
             }
         }
     }//main()
@@ -189,4 +206,14 @@ public class AddressBook {
         System.out.println("---Details has been shorted---");
     }//sortByZip()
 
+    //method for sh\orting by collection sort
+    public static void sortByState() {
+        book.sort(Comparator.comparing(Person::getState));
+        System.out.println("---Details has been shorted---");
+    }
+
+    public static void sortByCity() {
+        book.sort(Comparator.comparing(Person::getCity));
+        System.out.println("---Details has been shorted---");
+    }
 }//class
