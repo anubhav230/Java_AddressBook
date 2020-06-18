@@ -1,5 +1,6 @@
 package com.bridgelabz.addressbook;
 
+import java.time.chrono.MinguoDate;
 import java.util.*;
 
 public class AddressBook {
@@ -18,8 +19,8 @@ public class AddressBook {
                     " 2 = Display\n" +
                     " 3 = Edit person\n" +
                     " 4 = Delete aperson\n" +
-                    " 5 = Sort by Name\n" +
-                    " 6 = Sort by Zip\n" +
+                    " 5 = Sort data\n" +
+                    " 6 = View By City And State\n" +
                     " 7 = Quit");
 
             int choice = scanner2.nextInt();
@@ -37,14 +38,35 @@ public class AddressBook {
                     deletePerson();
                     break;
                 case 5:
-                    sortByName();
+                    System.out.println("Choose option: \n" +
+                            " 1 = Sort by name\n" +
+                            " 2 = Sort by Zip\n" +
+                            " 3 = Sort by state\n" +
+                            " 4 = Sort by city");
+                    int choice2=scanner2.nextInt();
+                    switch (choice2) {
+                        case 1:
+                            sortByName();
+                            break;
+                        case 2:
+                            sortByZip();
+                            break;
+                        case 3:
+                            sortByState();
+                            break;
+                        case 4:
+                            sortByCity();
+                            break;
+                    }
+
                     break;
                 case 6:
-                    sortByZip();
+                    viewByCityAndState();
                     break;
                 case 7:
                     flag = 2;
                     break;
+
             }
         }
     }//main()
@@ -189,4 +211,33 @@ public class AddressBook {
         System.out.println("---Details has been shorted---");
     }//sortByZip()
 
+    //method for sorting by collection sort
+    public static void sortByState() {
+        book.sort(Comparator.comparing(Person::getState));
+        System.out.println("---Details has been shorted---");
+    }//sortByState()
+
+    //method for sorting by collection sort
+    public static void sortByCity() {
+        book.sort(Comparator.comparing(Person::getCity));
+        System.out.println("---Details has been shorted---");
+    }//sortByCity()
+
+    public static void viewByCityAndState() {
+        if (count>0) {
+            System.out.println("Enter City name");
+            String city=scanner.next();
+            System.out.println("Enter State name");
+            String state=scanner.next();
+            int index =0;
+            for (int i=0; i<book.size();i++) {
+                if (book.contains(city) && book.contains(state)) {
+                    index=i;
+                    break;
+                }
+            }
+
+            System.out.println(book.get(index).getFristName()+" "+book.get(index).getLastName()+" " + book.get(index).getState()+" "+book.get(index).getMobileNumber()+" "+book.get(index).getCity()+" "+book.get(index).getZip());
+        }
+    }
 }//class
