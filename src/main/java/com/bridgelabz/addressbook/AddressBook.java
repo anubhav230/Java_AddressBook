@@ -231,13 +231,13 @@ public class AddressBook {
             String state=scanner.next();
             int index =0;
             for (int i=0; i<book.size();i++) {
-                if (book.contains(city) && book.contains(state)) {
+                if (book.get(i).getState().equals(state) && book.get(i).getCity().equals(city)) {
                     index=i;
-                    break;
+                    System.out.println(book.get(index).getFristName()+" "+book.get(index).getLastName()+" " + book.get(index).getState()+" "+book.get(index).getMobileNumber()+" "+book.get(index).getCity()+" "+book.get(index).getZip());
+
                 }
             }
 
-            System.out.println(book.get(index).getFristName()+" "+book.get(index).getLastName()+" " + book.get(index).getState()+" "+book.get(index).getMobileNumber()+" "+book.get(index).getCity()+" "+book.get(index).getZip());
         }
     }
 }//class
