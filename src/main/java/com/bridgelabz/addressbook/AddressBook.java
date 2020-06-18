@@ -223,6 +223,7 @@ public class AddressBook {
         System.out.println("---Details has been shorted---");
     }//sortByCity()
 
+    //Method for printing details if state and city both exist
     public static void viewByCityAndState() {
         if (count>0) {
             System.out.println("Enter City name");
@@ -239,5 +240,7 @@ public class AddressBook {
 
             System.out.println(book.get(index).getFristName()+" "+book.get(index).getLastName()+" " + book.get(index).getState()+" "+book.get(index).getMobileNumber()+" "+book.get(index).getCity()+" "+book.get(index).getZip());
         }
-    }
+    }//viewByCityAndState()
+
+
 }//class
