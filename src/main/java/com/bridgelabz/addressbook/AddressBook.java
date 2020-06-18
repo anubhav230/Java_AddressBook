@@ -21,7 +21,8 @@ public class AddressBook {
                     " 4 = Delete aperson\n" +
                     " 5 = Sort data\n" +
                     " 6 = View By City And State\n" +
-                    " 7 = Quit");
+                    " 7 = View By City Or State\n" +
+                    " 8 = Quit");
 
             int choice = scanner2.nextInt();
             switch (choice) {
@@ -64,6 +65,9 @@ public class AddressBook {
                     viewByCityAndState();
                     break;
                 case 7:
+                    viewByCityOrState();
+                    break;
+                case 8:
                     flag = 2;
                     break;
 
@@ -242,5 +246,23 @@ public class AddressBook {
         }
     }//viewByCityAndState()
 
+    //Method for printing details if state or city exist
+    public static void viewByCityOrState() {
+        if (count>0) {
+            System.out.println("Enter City name");
+            String city=scanner.next();
+            System.out.println("Enter State name");
+            String state=scanner.next();
+            int index =0;
+            for (int i=0; i<book.size();i++) {
+                if (book.get(i).getState().equals(state) || book.get(i).getCity().equals(city)) {
+                    index=i;
+                    System.out.println(book.get(index).getFristName()+" "+book.get(index).getLastName()+" " + book.get(index).getState()+" "+book.get(index).getMobileNumber()+" "+book.get(index).getCity()+" "+book.get(index).getZip());
+
+                }
+            }
+
+        }
+    }//viewByCityOrState()
 
 }//class
