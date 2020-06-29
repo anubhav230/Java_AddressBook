@@ -1,4 +1,4 @@
-package com.bridgelabz.addressbook.models;
+package com.bridgelabz.addressbook.services;
 
 public interface AddressBookInterface {
     void addPerson();
@@ -10,4 +10,5 @@ public interface AddressBookInterface {
     void sortByCity();
     void viewByCityAndState();
     void viewByCityOrState();
+    void editPerson();
 }

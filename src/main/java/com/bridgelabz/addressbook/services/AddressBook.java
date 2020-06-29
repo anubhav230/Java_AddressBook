@@ -1,13 +1,84 @@
 package com.bridgelabz.addressbook.services;
 
-import com.bridgelabz.addressbook.models.AddressBookInterface;
 import com.bridgelabz.addressbook.models.Person;
+
 import java.util.*;
+import java.util.regex.Pattern;
+import com.bridgelabz.addressbook.exception.AddressBookException;
 
 public class AddressBook implements AddressBookInterface {
     static int count = 0;
     static Scanner scanner = new Scanner(System.in);
     static List<Person> book = new ArrayList<>();
+
+    public boolean patternValidation(String value, String regex) {
+        Pattern pattern = Pattern.compile(regex);
+        if (pattern.matcher(value).matches())
+            return true;
+        else {
+            System.out.println("---------please enter correct input--------");
+            return false;
+        }
+    }
+
+    public void addFirstName() {
+        String NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$";
+        Person person = new Person();
+        System.out.println("Enter First name of person");
+        String firstName = scanner.next();
+        if (!patternValidation(firstName, NAME_PATTERN))
+            addFirstName();
+        person.setFirstName(firstName);
+    }
+
+    public void addLastName() {
+        String NAME_PATTERN = "^[A-Z]{1}[a-z]{2,}$";
+        Person person = new Person();
+        System.out.println("Enter Last name of person");
+        String lastName = scanner.next();
+        if (!patternValidation(lastName, NAME_PATTERN))
+            addLastName();
+        person.setFirstName(lastName);
+    }
+    public void addMobileNumber() {
+        String MOBILE_NUMBER_PATTERN = "^[1-9][0-9]{9}";
+        Person person = new Person();
+        System.out.println("Enter Mobile number of person");
+        Long mobileNumber = scanner.nextLong();
+        if (!patternValidation(String.valueOf(mobileNumber), MOBILE_NUMBER_PATTERN))
+            addMobileNumber();
+        person.setFirstName(String.valueOf(mobileNumber));
+    }
+
+    public void addState() {
+        String ADDRESS_PATTERN = "[a-z]{2,}";
+        Person person = new Person();
+        System.out.println("Enter State of person");
+        String State = scanner.next();
+        if (!patternValidation(State, ADDRESS_PATTERN))
+            addFirstName();
+        person.setFirstName(State);
+    }
+
+    public void addCity() {
+        String ADDRESS_PATTERN = "[a-z]{2,}";
+        Person person = new Person();
+        System.out.println("Enter City of person");
+        String city = scanner.next();
+        if (!patternValidation(city, ADDRESS_PATTERN))
+            addFirstName();
+        person.setFirstName(city);
+    }
+
+    public void addZip() {
+        String ZIP_PATTERN = "[0-9]{6}";
+        Person person = new Person();
+        System.out.println("Enter zip");
+        int zip = scanner.nextInt();
+        if (!patternValidation(String.valueOf(zip), ZIP_PATTERN))
+            addZip();
+        person.setZip(zip);
+    }
 
     /**
      * method to add person full details
@@ -26,24 +97,12 @@ public class AddressBook implements AddressBookInterface {
         }
         if (flag) {
             Person person = new Person();
-            System.out.println("Enter first name");
-            String firstName = scanner.next();
-            person.setFirstName(firstName);
-            System.out.println("Enter last name");
-            String lastName = scanner.next();
-            person.setLastName(lastName);
-            System.out.println("Enter mobile number");
-            long mobileNumber = scanner.nextLong();
-            person.setMobileNumber(mobileNumber);
-            System.out.println("Enter State");
-            String state = scanner.next();
-            person.setState(state);
-            System.out.println("Enter city");
-            String city = scanner.next();
-            person.setCity(city);
-            System.out.println("Enter zip");
-            int zip = scanner.nextInt();
-            person.setZip(zip);
+            addFirstName();
+            addLastName();
+            addMobileNumber();
+            addState();
+            addCity();
+            addZip();
             book.add(person);
             count++;
         }
@@ -71,8 +130,6 @@ public class AddressBook implements AddressBookInterface {
                         System.out.println("No person exist by this name");
                 }
             }
-
-
         }
     }
 
@@ -80,13 +137,13 @@ public class AddressBook implements AddressBookInterface {
      * method for printing person details
      */
     public void print() {
-        System.out.println(book);
+        book.forEach(System.out::println);
     }
 
     /**
      * method for edit person details by his first name
      */
-    public static void editPerson() {
+    public void editPerson() {
         if (count > 0) {
             System.out.println("Enter first name of the person for updating details");
             String name = scanner.next();
@@ -117,38 +174,15 @@ public class AddressBook implements AddressBookInterface {
      * method for sorting data with first name by bubble short
      */
     public void sortByName() {
-        for (int i = 0; i < book.size(); i++) {
-            for (int j = 1; j < book.size() - i; j++) {
-                if (book.get(j - 1).getFirstName().compareToIgnoreCase(book.get(j).getFirstName()) > 0) {
-                    Collections.swap(book, j - 1, j);
-                } else if (book.get(j - 1).getFirstName().compareToIgnoreCase(book.get(j).getFirstName()) == 0) {
-                    if (book.get(j - 1).getFirstName().compareTo(book.get(j).getFirstName()) > 0) {
-                        Collections.swap(book, j - 1, j);
-                    }
-
-                }
-            }
-        }
+        book.sort(Comparator.comparing(Person::getFirstName));
         System.out.println("---Details has been shorted---");
-
     }
 
     /**
      * method for sorting data by zip code with bubble sort
      */
     public void sortByZip() {
-        for (int i = 0; i < book.size(); i++) {
-            for (int j = 1; j < book.size() - i; j++) {
-                if (book.get(j - 1).getZip() > book.get(j).getZip()) {
-                    Collections.swap(book, j - 1, j);
-                } else if (book.get(j - 1).getZip() == book.get(j).getZip()) {
-                    if (book.get(j - 1).getFirstName().compareTo(book.get(j).getFirstName()) > 0) {
-                        Collections.swap(book, j - 1, j);
-                    }
-
-                }
-            }
-        }
+        book.sort(Comparator.comparing(Person::getZip));
         System.out.println("---Details has been shorted---");
     }
 
@@ -158,6 +192,8 @@ public class AddressBook implements AddressBookInterface {
     public void sortByState() {
         book.sort(Comparator.comparing(Person::getState));
         System.out.println("---Details has been shorted---");
+
+
     }
 
     /**
@@ -197,6 +233,8 @@ public class AddressBook implements AddressBookInterface {
             System.out.println("Enter State name");
             String state = scanner.next();
             int index = 0;
+
+
             for (int i = 0; i < book.size(); i++) {
                 if (book.get(i).getState().equals(state) || book.get(i).getCity().equals(city)) {
                     index = i;
