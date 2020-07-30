@@ -13,10 +13,10 @@ public class AddressBookApp {
                     " 1 = Add person\n" +
                     " 2 = Display\n" +
                     " 3 = Edit person\n" +
-                    " 4 = Delete aperson\n" +
+                    " 4 = Delete person\n" +
                     " 5 = Sort data\n" +
                     " 6 = View By City And State\n" +
-                    " 7 = View By City Or State\n" +
+                    " 7 = search person By City Or State\n" +
                     " 8 = Quit");
             int choice = scanner2.nextInt();
             switch (choice) {
