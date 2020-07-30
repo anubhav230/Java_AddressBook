@@ -58,7 +58,8 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person [firstName=" + firstName + ", lastName=" + lastName + ", mobileNumber=" + mobileNumber+
-                ", city=" + city + ", state=" + state + ", zip=" + zip + "]";
+        return "Person [firstName=" + firstName + ", lastName=" +
+                lastName + ", mobileNumber=" + mobileNumber+ ", city=" +
+                city + ", state=" + state + ", zip=" + zip + "]";
     }
 }

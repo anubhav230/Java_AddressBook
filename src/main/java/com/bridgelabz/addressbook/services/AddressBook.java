@@ -1,15 +1,25 @@
 package com.bridgelabz.addressbook.services;
 
 import com.bridgelabz.addressbook.models.Person;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.opencsv.CSVWriter;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.io.*;
 import java.util.*;
 import java.util.regex.Pattern;
 
 public class AddressBook implements AddressBookInterface {
+
     static int count = 0;
     static Scanner scanner = new Scanner(System.in);
     static List<Person> book = new ArrayList<>();
     Person person = new Person();
+
     public boolean patternValidation(String value, String regex) {
         Pattern pattern = Pattern.compile(regex);
         if (pattern.matcher(value).matches())
@@ -238,4 +248,41 @@ public class AddressBook implements AddressBookInterface {
                 }
         }
     }
+
+
+    public void writeInJSON() {
+        JSONObject personDetails = new JSONObject();
+
+        personDetails.put("FirstName", person.getFirstName());
+        personDetails.put("LastName", person.getLastName());
+        personDetails.put("MobileNumber", person.getMobileNumber());
+        personDetails.put("State", person.getState());
+        personDetails.put("City", person.getCity());
+        personDetails.put("Zip", person.getZip());
+        JSONObject addressBookObject = new JSONObject();
+        addressBookObject.put("addressBook", personDetails);
+        JSONArray personJSON = new JSONArray();
+        personJSON.add(addressBookObject);
+        try (FileWriter file = new FileWriter("./src/main/resources/AddressBook.json")) {
+
+            file.write(personJSON.toJSONString());
+            file.flush();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readFromJSON() {
+        JSONParser jsonParser = new JSONParser();
+        try (FileReader reader = new FileReader("./src/main/resources/AddressBook.json")) {
+            Object obj = jsonParser.parse(reader);
+            JSONArray addressBook = (JSONArray) obj;
+            System.out.println(addressBook);
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
+

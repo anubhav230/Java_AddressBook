@@ -1,6 +1,7 @@
 package com.bridgelabz.addressbook.main;
 
 import com.bridgelabz.addressbook.services.AddressBook;
+
 import java.util.Scanner;
 
 public class AddressBookApp {
@@ -17,7 +18,9 @@ public class AddressBookApp {
                     " 5 = Sort data\n" +
                     " 6 = View By City And State\n" +
                     " 7 = search person By City Or State\n" +
-                    " 8 = Quit");
+                    " 8 = Write in JSON\n" +
+                    " 9 = Read from JSON\n" +
+                    " 10 = Quit");
             int choice = scanner2.nextInt();
             switch (choice) {
                 case 1:
@@ -61,6 +64,12 @@ public class AddressBookApp {
                     addPerson.viewByCityOrState();
                     break;
                 case 8:
+                    addPerson.writeInJSON();
+                    break;
+                case 9:
+                    addPerson.readFromJSON();
+                    break;
+                case 10:
                     flag = 2;
                     break;
             }
