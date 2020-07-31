@@ -2,7 +2,7 @@ package com.bridgelabz.addressbook.exception;
 
 public class AddressBookException extends Exception {
 public enum ExceptionType {
-    EMPTY_VALUE,
+    FILE_PROBLEM,
 
 }
     ExceptionType type;

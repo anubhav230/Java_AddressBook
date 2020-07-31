@@ -1,12 +1,18 @@
 package com.bridgelabz.addressbook.services;
 
+import com.bridgelabz.addressbook.exception.AddressBookException;
 import com.bridgelabz.addressbook.models.Person;
+import com.bridgelabz.addressbook.utility.CSVFileOperation;
+import com.bridgelabz.addressbook.utility.ReadFromJSON;
+
 import java.util.*;
 import java.util.regex.Pattern;
 
 public class AddressBook implements AddressBookInterface {
     ReadFromJSON readFromJSON = new ReadFromJSON();
+    CSVFileOperation csv = new CSVFileOperation();
     String JSON_FILE_PATH = "./src/main/resources/AddressBook.json";
+    String CSV_FILE_PATH = "./src/main/resources/AddressBook.csv";
     static int count = 0;
     static Scanner scanner = new Scanner(System.in);
     List<Person> book = new ArrayList<>();
@@ -81,16 +87,18 @@ public class AddressBook implements AddressBookInterface {
      */
     public void addPerson() {
         boolean flag = true;
-            System.out.println("Enter First name of person");
-            String firstName = scanner.next();
-            System.out.println("Enter Last name of person");
-            String lastName = scanner.next();
-            for (Person person : book) {
-                if (firstName.equals(person.getFirstName()) && lastName.equals(person.getLastName())) {
-                    System.out.println("Person already exist");
-                    flag = false;
-                }
+        System.out.println("Enter First name of person");
+        String firstName = scanner.next();
+        System.out.println("Enter Last name of person");
+        String lastName = scanner.next();
+        for (Person person : book) {
+            if (firstName.equals(person.getFirstName()) && lastName.equals(person.getLastName())) {
+                System.out.println("Person already exist");
+                flag = false;
+            }
+
         }
+
         if (flag) {
             addFirstName();
             addLastName();
@@ -101,26 +109,25 @@ public class AddressBook implements AddressBookInterface {
             book.add(person);
             count++;
         }
+
     }
 
     /**
      * method for deleting person from AddressBook
      */
     public void deletePerson() {
-        if (count > 0) {
-            System.out.println("Enter first name to delete from addressBook");
-            String firstName = scanner.next();
-            System.out.println("Enter last name to delete from addressBook");
-            String lastName = scanner.next();
-            for (int i = 0; i < book.size(); i++) {
-                if (firstName.equals(book.get(i).getFirstName()) &&
-                        lastName.equals(book.get(i).getLastName())) {
-                    book.remove(i);
-                    count--;
-                    System.out.println("Person has been removed from book");
-                } else {
-                    System.out.println("Person not exist");
-                }
+        System.out.println("Enter first name to delete from addressBook");
+        String firstName = scanner.next();
+        System.out.println("Enter last name to delete from addressBook");
+        String lastName = scanner.next();
+        for (int i = 0; i < book.size(); i++) {
+            if (firstName.equals(book.get(i).getFirstName()) &&
+                    lastName.equals(book.get(i).getLastName())) {
+                book.remove(i);
+                count--;
+                System.out.println("Person has been removed from book");
+            } else {
+                System.out.println("Person not exist");
             }
         }
     }
@@ -136,27 +143,27 @@ public class AddressBook implements AddressBookInterface {
      * method for edit person details by his first name
      */
     public void editPerson() {
-            System.out.println("Enter first name of the person for updating details");
-            String name = scanner.next();
-            boolean isFound = false;
-            int index = 0;
-            for (int i = 0; i < book.size(); i++)
-                if (name.equals(book.get(i).getFirstName())) {
-                    isFound = true;
-                    index = i;
-                    break;
-                }
-            if (isFound) {
-                System.out.println("Enter mobile number");
-                book.get(index).setMobileNumber(scanner.nextLong());
-                System.out.println("Enter State");
-                book.get(index).setState(scanner.next());
-                System.out.println("Enter city");
-                book.get(index).setCity(scanner.next());
-                System.out.println("Enter zip");
-                book.get(index).setZip(scanner.nextInt());
-            } else
-                System.out.println("person not exist");
+        System.out.println("Enter first name of the person for updating details");
+        String name = scanner.next();
+        boolean isFound = false;
+        int index = 0;
+        for (int i = 0; i < book.size(); i++)
+            if (name.equals(book.get(i).getFirstName())) {
+                isFound = true;
+                index = i;
+                break;
+            }
+        if (isFound) {
+            System.out.println("Enter mobile number");
+            book.get(index).setMobileNumber(scanner.nextLong());
+            System.out.println("Enter State");
+            book.get(index).setState(scanner.next());
+            System.out.println("Enter city");
+            book.get(index).setCity(scanner.next());
+            System.out.println("Enter zip");
+            book.get(index).setZip(scanner.nextInt());
+        } else
+            System.out.println("person not exist");
     }
 
     /**
@@ -196,20 +203,20 @@ public class AddressBook implements AddressBookInterface {
      */
     public void viewByCityAndState() {
         int index;
-            System.out.println("Enter City name");
-            String city = scanner.next();
-            System.out.println("Enter State name");
-            String state = scanner.next();
-            for (int i = 0; i < book.size(); i++)
-                if (book.get(i).getState().equals(state) && book.get(i).getCity().equals(city)) {
-                    index = i;
-                    System.out.println(book.get(index).getFirstName() +
-                            " " + book.get(index).getLastName() +
-                            " " + book.get(index).getState() +
-                            " " + book.get(index).getMobileNumber() +
-                            " " + book.get(index).getCity() +
-                            " " + book.get(index).getZip());
-                }
+        System.out.println("Enter City name");
+        String city = scanner.next();
+        System.out.println("Enter State name");
+        String state = scanner.next();
+        for (int i = 0; i < book.size(); i++)
+            if (book.get(i).getState().equals(state) && book.get(i).getCity().equals(city)) {
+                index = i;
+                System.out.println(book.get(index).getFirstName() +
+                        " " + book.get(index).getLastName() +
+                        " " + book.get(index).getState() +
+                        " " + book.get(index).getMobileNumber() +
+                        " " + book.get(index).getCity() +
+                        " " + book.get(index).getZip());
+            }
     }
 
     /**
@@ -217,20 +224,20 @@ public class AddressBook implements AddressBookInterface {
      */
     public void viewByCityOrState() {
         int index;
-            System.out.println("Enter City name");
-            String city = scanner.next();
-            System.out.println("Enter State name");
-            String state = scanner.next();
-            for (int i = 0; i < book.size(); i++)
-                if (book.get(i).getState().equals(state) || book.get(i).getCity().equals(city)) {
-                    index = i;
-                    System.out.println(book.get(index).getFirstName() +
-                            " " + book.get(index).getLastName() +
-                            " " + book.get(index).getState() +
-                            " " + book.get(index).getMobileNumber() +
-                            " " + book.get(index).getCity() +
-                            " " + book.get(index).getZip());
-                }
+        System.out.println("Enter City name");
+        String city = scanner.next();
+        System.out.println("Enter State name");
+        String state = scanner.next();
+        for (int i = 0; i < book.size(); i++)
+            if (book.get(i).getState().equals(state) || book.get(i).getCity().equals(city)) {
+                index = i;
+                System.out.println(book.get(index).getFirstName() +
+                        " " + book.get(index).getLastName() +
+                        " " + book.get(index).getState() +
+                        " " + book.get(index).getMobileNumber() +
+                        " " + book.get(index).getCity() +
+                        " " + book.get(index).getZip());
+            }
     }
 
     /**
@@ -245,6 +252,18 @@ public class AddressBook implements AddressBookInterface {
      */
     public void writeInJSON() {
         readFromJSON.writeJson(book, JSON_FILE_PATH);
+    }
+
+    public void writeInCSVFile() {
+        try {
+            csv.writeFile(book, CSV_FILE_PATH);
+        } catch (AddressBookException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readFromCSVFile() {
+        book = csv.loadDataFromFile(CSV_FILE_PATH);
     }
 }
 
