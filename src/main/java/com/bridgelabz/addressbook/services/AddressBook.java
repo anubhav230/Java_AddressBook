@@ -81,7 +81,6 @@ public class AddressBook implements AddressBookInterface {
      */
     public void addPerson() {
         boolean flag = true;
-        if (count > 0) {
             System.out.println("Enter First name of person");
             String firstName = scanner.next();
             System.out.println("Enter Last name of person");
@@ -91,7 +90,6 @@ public class AddressBook implements AddressBookInterface {
                     System.out.println("Person already exist");
                     flag = false;
                 }
-            }
         }
         if (flag) {
             addFirstName();
@@ -138,7 +136,6 @@ public class AddressBook implements AddressBookInterface {
      * method for edit person details by his first name
      */
     public void editPerson() {
-        if (count > 0) {
             System.out.println("Enter first name of the person for updating details");
             String name = scanner.next();
             boolean isFound = false;
@@ -160,7 +157,6 @@ public class AddressBook implements AddressBookInterface {
                 book.get(index).setZip(scanner.nextInt());
             } else
                 System.out.println("person not exist");
-        }
     }
 
     /**
@@ -200,7 +196,6 @@ public class AddressBook implements AddressBookInterface {
      */
     public void viewByCityAndState() {
         int index;
-        if (count > 0) {
             System.out.println("Enter City name");
             String city = scanner.next();
             System.out.println("Enter State name");
@@ -215,7 +210,6 @@ public class AddressBook implements AddressBookInterface {
                             " " + book.get(index).getCity() +
                             " " + book.get(index).getZip());
                 }
-        }
     }
 
     /**
@@ -223,7 +217,6 @@ public class AddressBook implements AddressBookInterface {
      */
     public void viewByCityOrState() {
         int index;
-        if (count > 0) {
             System.out.println("Enter City name");
             String city = scanner.next();
             System.out.println("Enter State name");
@@ -238,13 +231,18 @@ public class AddressBook implements AddressBookInterface {
                             " " + book.get(index).getCity() +
                             " " + book.get(index).getZip());
                 }
-        }
     }
 
+    /**
+     * method for reading data from json to list
+     */
     public void readJsonDataInList() {
         readFromJSON.readFromJSON(book, JSON_FILE_PATH);
     }
 
+    /**
+     * method for write in json
+     */
     public void writeInJSON() {
         readFromJSON.writeJson(book, JSON_FILE_PATH);
     }
