@@ -11,4 +11,8 @@ public interface AddressBookInterface {
     void viewByCityAndState();
     void viewByCityOrState();
     void editPerson();
+    void readJsonDataInList();
+    void writeInCSVFile();
+    void readFromCSVFile();
+    void writeInJSON();
 }

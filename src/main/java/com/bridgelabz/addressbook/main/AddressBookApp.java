@@ -8,11 +8,11 @@ public class AddressBookApp {
     static int flag = 1;
     static Scanner scanner = new Scanner(System.in);
     public static AddressBook addPerson = new AddressBook();
+
     public static void main(String[] args) {
         System.out.println("Choose option: \n" +
                 " 1 = JSON\n" +
                 " 2 = CSV\n");
-
         int choice = scanner.nextInt();
         switch (choice) {
             case 1:
@@ -23,9 +23,7 @@ public class AddressBookApp {
                 break;
         }
 
-
         while (flag == 1) {
-            //Scanner scanner2 = new Scanner(System.in);
             System.out.println("Choose option: \n" +
                     " 1 = Add person\n" +
                     " 2 = Display\n" +
@@ -81,19 +79,13 @@ public class AddressBookApp {
                 case 7:
                     addPerson.viewByCityOrState();
                     break;
-//                case 8:
-//                    addPerson.readJsonDataInList();
-//                    break;
-                case 9:
+                case 8:
                     addPerson.writeInJSON();
                     break;
-                case 10:
+                case 9:
                     addPerson.writeInCSVFile();
                     break;
-//                case 11:
-//                    addPerson.readFromCSVFile();
-//                    break;
-                case 12:
+                case 10:
                     flag = 2;
                     break;
             }

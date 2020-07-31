@@ -238,14 +238,23 @@ public class AddressBook implements AddressBookInterface {
                 }
     }
 
+    /**
+     * method for read data in list
+     */
     public void readJsonDataInList() {
         readFromJSON.readFromJSON(book, JSON_FILE_PATH);
     }
 
+    /**
+     * method for write in json file
+     */
     public void writeInJSON() {
         readFromJSON.writeJson(book, JSON_FILE_PATH);
     }
 
+    /**
+     * write in json file
+     */
     public void writeInCSVFile() {
         try {
             csv.writeFile(book, CSV_FILE_PATH);
@@ -254,6 +263,9 @@ public class AddressBook implements AddressBookInterface {
         }
     }
 
+    /**
+     * method for reading from read form csv file to list
+     */
     public void readFromCSVFile() {
         book = csv.loadDataFromFile(CSV_FILE_PATH);
     }
