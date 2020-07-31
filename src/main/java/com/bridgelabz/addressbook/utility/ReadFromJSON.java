@@ -1,4 +1,4 @@
-package com.bridgelabz.addressbook.services;
+package com.bridgelabz.addressbook.utility;
 
 import com.bridgelabz.addressbook.models.Person;
 import org.json.simple.JSONArray;
@@ -6,13 +6,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.List;
 
 public class ReadFromJSON {
+    @SuppressWarnings("unchecked")
     public void writeJson(List<Person> book, String filePath) {
         JSONArray personDetails = new JSONArray();
         for (Person person : book) {
@@ -29,25 +29,23 @@ public class ReadFromJSON {
             personDetails.add(addressBookObject);
 
             try (FileWriter file = new FileWriter(filePath)) {
-                file.write(personDetails.toJSONString());
+                file.write(personDetails.toString());
                 file.flush();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
     }
 
-    public List<Person> readFromJSON(List<Person> book, String filePath) {
+    public void readFromJSON(List<Person> book, String filePath) {
         JSONParser jsonParser = new JSONParser();
         try (FileReader reader = new FileReader(filePath)) {
             Object obj = jsonParser.parse(reader);
             JSONArray addressBook = (JSONArray) obj;
-            addressBook.forEach( person -> book.add(parsePersonObject((JSONObject) person )));
+            addressBook.forEach(person -> book.add(parsePersonObject((JSONObject) person )));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
-        return book;
     }
 
     private Person parsePersonObject(JSONObject personJson) {
@@ -68,7 +66,4 @@ public class ReadFromJSON {
         return person;
 
     }
-
-
-
 }

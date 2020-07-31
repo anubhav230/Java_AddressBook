@@ -1,12 +1,18 @@
 package com.bridgelabz.addressbook.services;
 
+import com.bridgelabz.addressbook.exception.AddressBookException;
 import com.bridgelabz.addressbook.models.Person;
+import com.bridgelabz.addressbook.utility.CSVFileOperation;
+import com.bridgelabz.addressbook.utility.ReadFromJSON;
+
 import java.util.*;
 import java.util.regex.Pattern;
 
 public class AddressBook implements AddressBookInterface {
     ReadFromJSON readFromJSON = new ReadFromJSON();
+    CSVFileOperation csv = new CSVFileOperation();
     String JSON_FILE_PATH = "./src/main/resources/AddressBook.json";
+    String CSV_FILE_PATH = "./src/main/resources/AddressBook.csv";
     static int count = 0;
     static Scanner scanner = new Scanner(System.in);
     List<Person> book = new ArrayList<>();
@@ -81,7 +87,6 @@ public class AddressBook implements AddressBookInterface {
      */
     public void addPerson() {
         boolean flag = true;
-        if (count > 0) {
             System.out.println("Enter First name of person");
             String firstName = scanner.next();
             System.out.println("Enter Last name of person");
@@ -92,7 +97,6 @@ public class AddressBook implements AddressBookInterface {
                     flag = false;
                 }
             }
-        }
         if (flag) {
             addFirstName();
             addLastName();
@@ -109,7 +113,6 @@ public class AddressBook implements AddressBookInterface {
      * method for deleting person from AddressBook
      */
     public void deletePerson() {
-        if (count > 0) {
             System.out.println("Enter first name to delete from addressBook");
             String firstName = scanner.next();
             System.out.println("Enter last name to delete from addressBook");
@@ -124,7 +127,6 @@ public class AddressBook implements AddressBookInterface {
                     System.out.println("Person not exist");
                 }
             }
-        }
     }
 
     /**
@@ -138,7 +140,6 @@ public class AddressBook implements AddressBookInterface {
      * method for edit person details by his first name
      */
     public void editPerson() {
-        if (count > 0) {
             System.out.println("Enter first name of the person for updating details");
             String name = scanner.next();
             boolean isFound = false;
@@ -160,7 +161,6 @@ public class AddressBook implements AddressBookInterface {
                 book.get(index).setZip(scanner.nextInt());
             } else
                 System.out.println("person not exist");
-        }
     }
 
     /**
@@ -200,7 +200,6 @@ public class AddressBook implements AddressBookInterface {
      */
     public void viewByCityAndState() {
         int index;
-        if (count > 0) {
             System.out.println("Enter City name");
             String city = scanner.next();
             System.out.println("Enter State name");
@@ -215,7 +214,7 @@ public class AddressBook implements AddressBookInterface {
                             " " + book.get(index).getCity() +
                             " " + book.get(index).getZip());
                 }
-        }
+
     }
 
     /**
@@ -223,7 +222,6 @@ public class AddressBook implements AddressBookInterface {
      */
     public void viewByCityOrState() {
         int index;
-        if (count > 0) {
             System.out.println("Enter City name");
             String city = scanner.next();
             System.out.println("Enter State name");
@@ -238,7 +236,6 @@ public class AddressBook implements AddressBookInterface {
                             " " + book.get(index).getCity() +
                             " " + book.get(index).getZip());
                 }
-        }
     }
 
     public void readJsonDataInList() {
@@ -247,6 +244,18 @@ public class AddressBook implements AddressBookInterface {
 
     public void writeInJSON() {
         readFromJSON.writeJson(book, JSON_FILE_PATH);
+    }
+
+    public void writeInCSVFile() {
+        try {
+            csv.writeFile(book, CSV_FILE_PATH);
+        } catch (AddressBookException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void readFromCSVFile() {
+        book = csv.loadDataFromFile(CSV_FILE_PATH);
     }
 }
 
