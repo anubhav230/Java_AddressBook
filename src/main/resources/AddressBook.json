@@ -1,1 +1,1 @@
-[{"addressBook":[Person [firstName=Ankit, lastName=Singh, mobileNumber=8888888888, city=dfdf, state=up, zip=999999],Person [firstName=Ankit, lastName=Singh, mobileNumber=8888888888, city=dfdf, state=up, zip=999999]]}]
+[{"addressBook":{"Zip":555555,"MobileNumber":8888888888,"FirstName":"Anubhav","State":"UP","LastName":"Singh","City":"etawah"}},{"addressBook":{"Zip":555555,"MobileNumber":6666666666,"FirstName":"Ankit","State":"fuf","LastName":"Singh","City":"fjfj"}}]

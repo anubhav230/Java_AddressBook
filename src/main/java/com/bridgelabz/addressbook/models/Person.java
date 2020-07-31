@@ -8,6 +8,7 @@ public class Person {
     private int zip;
     private long mobileNumber;
 
+
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }

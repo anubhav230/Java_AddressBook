@@ -1,6 +1,7 @@
 package com.bridgelabz.addressbook.main;
 
 import com.bridgelabz.addressbook.services.AddressBook;
+import com.bridgelabz.addressbook.services.ReadFromJSON;
 
 import java.util.Scanner;
 
@@ -8,6 +9,7 @@ public class AddressBookApp {
     static int flag = 1;
     public static AddressBook addPerson = new AddressBook();
     public static void main(String[] args) {
+        addPerson.readJsonDataInList();
         while (flag == 1) {
             Scanner scanner2 = new Scanner(System.in);
             System.out.println("Choose option: \n" +
@@ -19,8 +21,7 @@ public class AddressBookApp {
                     " 6 = View By City And State\n" +
                     " 7 = search person By City Or State\n" +
                     " 8 = Write in JSON\n" +
-                    " 9 = Read from JSON\n" +
-                    " 10 = Quit");
+                    " 9 = Quit");
             int choice = scanner2.nextInt();
             switch (choice) {
                 case 1:
@@ -67,9 +68,6 @@ public class AddressBookApp {
                     addPerson.writeInJSON();
                     break;
                 case 9:
-                    addPerson.readFromJSON();
-                    break;
-                case 10:
                     flag = 2;
                     break;
             }
