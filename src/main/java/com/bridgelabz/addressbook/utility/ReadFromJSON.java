@@ -1,4 +1,4 @@
-package com.bridgelabz.addressbook.services;
+package com.bridgelabz.addressbook.utility;
 
 import com.bridgelabz.addressbook.models.Person;
 import org.json.simple.JSONArray;

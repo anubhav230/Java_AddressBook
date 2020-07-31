@@ -1,7 +1,6 @@
 package com.bridgelabz.addressbook.main;
 
 import com.bridgelabz.addressbook.services.AddressBook;
-import com.bridgelabz.addressbook.services.ReadFromJSON;
 
 import java.util.Scanner;
 
