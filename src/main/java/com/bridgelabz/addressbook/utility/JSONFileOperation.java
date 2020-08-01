@@ -1,17 +1,19 @@
 package com.bridgelabz.addressbook.utility;
 
 import com.bridgelabz.addressbook.models.Person;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class ReadFromJSON {
+public class JSONFileOperation {
     @SuppressWarnings("unchecked")
     public void writeJson(List<Person> book, String filePath) {
         JSONArray personDetails = new JSONArray();
@@ -42,7 +44,7 @@ public class ReadFromJSON {
         try (FileReader reader = new FileReader(filePath)) {
             Object obj = jsonParser.parse(reader);
             JSONArray addressBook = (JSONArray) obj;
-            addressBook.forEach(person -> book.add(parsePersonObject((JSONObject) person )));
+            addressBook.forEach(person -> book.add(parsePersonObject((JSONObject) person)));
         } catch (IOException | ParseException e) {
             e.printStackTrace();
         }
@@ -65,5 +67,27 @@ public class ReadFromJSON {
         person.setZip(zip.intValue());
         return person;
 
+    }
+
+    public List<Person> readFromSimpleGSON(String filePath) {
+        List<Person> PersonList;
+        try{
+            Person[] personDetails = new Gson().fromJson(new FileReader(filePath), Person[].class);
+            PersonList = new ArrayList<>(Arrays.asList(personDetails));
+            return PersonList;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public void writeGSON(List<Person> list, String filePath) {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(list);
+        try(FileWriter writer = new FileWriter(filePath)) {
+            writer.write(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

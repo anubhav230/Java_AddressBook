@@ -15,4 +15,6 @@ public interface AddressBookInterface {
     void writeInCSVFile();
     void readFromCSVFile();
     void writeInJSON();
+    void readFromSimpleJSON();
+    void writeInGSON();
 }

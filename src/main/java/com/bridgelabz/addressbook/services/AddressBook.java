@@ -3,16 +3,17 @@ package com.bridgelabz.addressbook.services;
 import com.bridgelabz.addressbook.exception.AddressBookException;
 import com.bridgelabz.addressbook.models.Person;
 import com.bridgelabz.addressbook.utility.CSVFileOperation;
-import com.bridgelabz.addressbook.utility.ReadFromJSON;
+import com.bridgelabz.addressbook.utility.JSONFileOperation;
 
 import java.util.*;
 import java.util.regex.Pattern;
 
 public class AddressBook implements AddressBookInterface {
-    ReadFromJSON readFromJSON = new ReadFromJSON();
+    JSONFileOperation readFromJSON = new JSONFileOperation();
     CSVFileOperation csv = new CSVFileOperation();
     String JSON_FILE_PATH = "./src/main/resources/AddressBook.json";
     String CSV_FILE_PATH = "./src/main/resources/AddressBook.csv";
+    String GSON_FILE_PATH = "./src/main/resources/AddressBookGson.json";
     static int count = 0;
     static Scanner scanner = new Scanner(System.in);
     List<Person> book = new ArrayList<>();
@@ -96,6 +97,8 @@ public class AddressBook implements AddressBookInterface {
                     System.out.println("Person already exist");
                     flag = false;
                 }
+
+
             }
         if (flag) {
             addFirstName();
@@ -267,7 +270,15 @@ public class AddressBook implements AddressBookInterface {
      * method for reading from read form csv file to list
      */
     public void readFromCSVFile() {
-        book = csv.loadDataFromFile(CSV_FILE_PATH);
+       book = csv.loadDataFromFile(CSV_FILE_PATH);
+    }
+
+    public void readFromSimpleJSON() {
+        book = readFromJSON.readFromSimpleGSON(GSON_FILE_PATH);
+    }
+
+    public void writeInGSON() {
+        readFromJSON.writeGSON(book, GSON_FILE_PATH);
     }
 }
 
