@@ -16,7 +16,8 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class CSVFileOperation {
-    public List loadDataFromFile(String CSV_FILE_PATH) {
+
+    public List<Person> loadDataFromFile(String CSV_FILE_PATH) {
         List<Person> book;
         try(Reader reader = Files.newBufferedReader(Paths.get(CSV_FILE_PATH))) {
             CsvToBean csvToBean = new CsvToBeanBuilder(reader).withType(Person.class)

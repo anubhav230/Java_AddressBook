@@ -1,0 +1,34 @@
+[
+  {
+    "firstName": "Anubhav",
+    "lastName": "Singh",
+    "state": "UP",
+    "city": "etawah",
+    "zip": 555555,
+    "mobileNumber": 8888888888
+  },
+  {
+    "firstName": "Neeru",
+    "lastName": "Singh",
+    "state": "Up",
+    "city": "agra",
+    "zip": 555555,
+    "mobileNumber": 9999999999
+  },
+  {
+    "firstName": "Neeru",
+    "lastName": "Baghel",
+    "state": "up",
+    "city": "etawah",
+    "zip": 666666,
+    "mobileNumber": 7777777777
+  },
+  {
+    "firstName": "Neeru",
+    "lastName": "Baghel",
+    "state": "up",
+    "city": "etawah",
+    "zip": 666666,
+    "mobileNumber": 7777777777
+  }
+]
