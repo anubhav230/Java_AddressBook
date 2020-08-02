@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.bridgelabz.addressbook.test.AddressBookTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-08-02T14:54:36" hostname="LAPTOP-GT6OG951" time="2.387">
+  <properties/>
+  <testcase name="givenPerson_OnPost_ShouldReturnAddedPerson" classname="com.bridgelabz.addressbook.test.AddressBookTest" time="2.233"/>
+  <testcase name="givenPersonId_OnDelete_ShouldReturnSuccessStatus" classname="com.bridgelabz.addressbook.test.AddressBookTest" time="0.065"/>
+  <testcase name="givenPerson_WhenPresent_ShouldReturnDetails" classname="com.bridgelabz.addressbook.test.AddressBookTest" time="0.089"/>
+  <system-out><![CDATA[AT FIRST: [
+  {
+    "firstName": "Anubhav",
+    "lastName": "Singh",
+    "city": "etawah",
+    "state": "up",
+    "zipCode": "444444",
+    "phone": "8888888888",
+    "id": 1
+  },
+  {
+    "id": 2,
+    "firstName": "Ankit",
+    "lastName": "Singh",
+    "city": "etawah",
+    "state": "up",
+    "zipCode": "333333",
+    "phone": "2222222222"
+  },
+  {
+    "firstName": "Priyanka",
+    "lastName": "Baghel",
+    "city": "bbsr",
+    "state": "odisha",
+    "zipCode": "456737",
+    "phone": "8967654398",
+    "id": 4
+  },
+  {
+    "firstName": "Priyanka",
+    "lastName": "Baghel",
+    "city": "bbsr",
+    "state": "odisha",
+    "zipCode": "456737",
+    "phone": "8967654398",
+    "id": 5
+  }
+]
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
