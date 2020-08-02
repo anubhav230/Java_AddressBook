@@ -23,22 +23,22 @@ public class AddressBookApp {
                 addPerson.readFromCSVFile();
                 break;
             case 3:
-                addPerson.readFromSimpleJSON();
+                addPerson.readFromJSON();
                 break;
         }
 
         while (flag == 1) {
             System.out.println("Choose option: \n" +
-                    " 1 = Add person\n" +
-                    " 2 = Display\n" +
-                    " 3 = Edit person\n" +
-                    " 4 = Delete person\n" +
-                    " 5 = Sort data\n" +
+                    " 1 = Add person details\n" +
+                    " 2 = Display person details\n" +
+                    " 3 = Edit person person details\n" +
+                    " 4 = Delete person From AddressBook\n" +
+                    " 5 = Sort Person details\n" +
                     " 6 = View By City And State\n" +
-                    " 7 = search person By City Or State\n" +
+                    " 7 = Search person By City Or State\n" +
                     " 8 = Write in JSON\n" +
                     " 9 = Write in CSV\n" +
-                    " 10 = Write in GSON\n" +
+                    " 10 = Write in JSON With GSON library\n" +
                     " 11 = Quit");
             int choice2 = scanner.nextInt();
             switch (choice2) {

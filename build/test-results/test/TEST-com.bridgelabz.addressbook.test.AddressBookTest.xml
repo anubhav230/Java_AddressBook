@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.bridgelabz.addressbook.test.AddressBookTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-08-02T14:17:18" hostname="LAPTOP-GT6OG951" time="2.351">
+  <properties/>
+  <testcase name="givenPersonId_OnDelete_ShouldReturnSuccessStatus" classname="com.bridgelabz.addressbook.test.AddressBookTest" time="2.351"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

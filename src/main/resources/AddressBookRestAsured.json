@@ -1,0 +1,31 @@
+{
+  "addressBook": [
+    {
+      "firstName": "Anubhav",
+      "lastName": "Singh",
+      "city": "etawah",
+      "state": "up",
+      "zipCode": "444444",
+      "phone": "8888888888",
+      "id": 1
+    },
+    {
+      "id": 2,
+      "firstName": "Ankit",
+      "lastName": "Singh",
+      "city": "etawah",
+      "state": "up",
+      "zipCode": "333333",
+      "phone": "2222222222"
+    },
+    {
+      "firstName": "Priyanka",
+      "lastName": "Baghel",
+      "city": "bbsr",
+      "state": "odisha",
+      "zipCode": "456737",
+      "phone": "8967654398",
+      "id": 4
+    }
+  ]
+}

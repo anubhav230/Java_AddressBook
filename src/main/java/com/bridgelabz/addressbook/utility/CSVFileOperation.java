@@ -7,6 +7,8 @@ import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
 import com.opencsv.bean.StatefulBeanToCsv;
 import com.opencsv.bean.StatefulBeanToCsvBuilder;
+import com.opencsv.exceptions.CsvDataTypeMismatchException;
+import com.opencsv.exceptions.CsvRequiredFieldEmptyException;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -31,14 +33,18 @@ public class CSVFileOperation {
         return null;
     }
 
-    public void writeFile(List<Person> book, String CSV_FILE_PATH) throws AddressBookException {
+    public void writeFile(List<Person> addressBook, String CSV_FILE_PATH) {
         try (Writer writer = Files.newBufferedWriter(Paths.get(CSV_FILE_PATH))) {
             StatefulBeanToCsv<Person> beanToCsv = new StatefulBeanToCsvBuilder<Person>(writer)
                     .withQuotechar(CSVWriter.NO_QUOTE_CHARACTER)
                     .build();
-            beanToCsv.write(book);
-        } catch (Exception e) {
-            throw new AddressBookException(AddressBookException.ExceptionType.FILE_PROBLEM, "Invalid File");
+            beanToCsv.write(addressBook);
+        }  catch (IOException e) {
+            e.printStackTrace();
+        } catch (CsvRequiredFieldEmptyException e) {
+            e.printStackTrace();
+        } catch (CsvDataTypeMismatchException e) {
+            e.printStackTrace();
         }
     }
 }
