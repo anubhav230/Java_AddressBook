@@ -141,24 +141,42 @@ public class AddressBook implements AddressBookInterface {
      */
     public void editPerson() {
         System.out.println("Enter first name of the person for updating details");
-        String name = scanner.next();
+        String firstName = scanner.next();
+        System.out.println("Enter last name of the person for updating details");
+        String lastName = scanner.next();
         boolean isFound = false;
         int index = 0;
         for (int i = 0; i < book.size(); i++)
-            if (name.equals(book.get(i).getFirstName())) {
+            if (firstName.equals(book.get(i).getFirstName()) && lastName.equals(book.get(i).getLastName())) {
                 isFound = true;
                 index = i;
                 break;
             }
         if (isFound) {
-            System.out.println("Enter mobile number");
-            book.get(index).setMobileNumber(scanner.nextLong());
-            System.out.println("Enter State");
-            book.get(index).setState(scanner.next());
-            System.out.println("Enter city");
-            book.get(index).setCity(scanner.next());
-            System.out.println("Enter zip");
-            book.get(index).setZip(scanner.nextInt());
+            System.out.println("Choose option: \n" +
+                    " 1 = Edit mobile number\n" +
+                    " 2 = Edit State\n" +
+                    " 3 = Edit city\n" +
+                    " 4 = Edit zip");
+            int input = scanner.nextInt();
+            switch (input) {
+                case 1:
+                    System.out.println("Enter mobile number");
+                    book.get(index).setMobileNumber(scanner.nextLong());
+                    break;
+                case 2:
+                    System.out.println("Enter State");
+                    book.get(index).setState(scanner.next());
+                    break;
+                case 3:
+                    System.out.println("Enter city");
+                    book.get(index).setCity(scanner.next());
+                    break;
+                case 4:
+                    System.out.println("Enter zip");
+                    book.get(index).setZip(scanner.nextInt());
+                    break;
+            }
         } else
             System.out.println("person not exist");
     }

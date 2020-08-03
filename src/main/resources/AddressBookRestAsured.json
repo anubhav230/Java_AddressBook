@@ -17,15 +17,6 @@
       "state": "up",
       "zipCode": "333333",
       "phone": "2222222222"
-    },
-    {
-      "firstName": "Priyanka",
-      "lastName": "Baghel",
-      "city": "bbsr",
-      "state": "odisha",
-      "zipCode": "456737",
-      "phone": "8967654398",
-      "id": 4
     }
   ]
 }

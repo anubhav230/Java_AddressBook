@@ -22,7 +22,7 @@ public class AddressBookTest {
     @Test
     public void givenPerson_WhenPresent_ShouldReturnDetails() {
         Response response = getPersonList();
-        System.out.println("AT FIRST: " + response.asString());
+        System.out.println(response.asString());
         response.then().body("id", Matchers.hasItems(1));
         response.then().body("firstName", Matchers.hasItems("Anubhav"));
     }
@@ -33,7 +33,7 @@ public class AddressBookTest {
                 .contentType(ContentType.JSON)
                 .accept(ContentType.JSON)
                 .body("{\"firstName\": \"Priyanka\", \"lastName\": \"Baghel\"," +
-                        "\"city\": \"bbsr\", \"state\": \"odisha\", \"zipCode\": \"456737\"," +
+                        "\"city\": \"bbsr\", \"state\": \"up\", \"zipCode\": \"456737\"," +
                         "\"phone\": \"8967654398\"}")
                 .when()
                 .post("/addressBook/create");
