@@ -12,9 +12,9 @@ public interface AddressBookInterface {
     void viewByCityOrState();
     void editPerson();
     void readJsonDataInList();
-    void writeInCSVFile();
+    //void writeInCSVFile();
     void readFromCSVFile();
-    void writeInJSON();
+    //void writeInJSON();
     void readFromJSON();
-    void writeInGSON();
+    //void writeInGSON();
 }

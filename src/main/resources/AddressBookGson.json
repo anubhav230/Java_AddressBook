@@ -13,15 +13,7 @@
     "state": "Up",
     "city": "agra",
     "zip": 555555,
-    "mobileNumber": 9999999999
-  },
-  {
-    "firstName": "Neeru",
-    "lastName": "Baghel",
-    "state": "up",
-    "city": "etawah",
-    "zip": 666666,
-    "mobileNumber": 7777777777
+    "mobileNumber": 4444444444
   },
   {
     "firstName": "Neeru",
@@ -38,5 +30,13 @@
     "city": "etwah",
     "zip": 888888,
     "mobileNumber": 9999999999
+  },
+  {
+    "firstName": "Priyanka",
+    "lastName": "Singh",
+    "state": "up",
+    "city": "dhdh",
+    "zip": 777777,
+    "mobileNumber": 0
   }
 ]

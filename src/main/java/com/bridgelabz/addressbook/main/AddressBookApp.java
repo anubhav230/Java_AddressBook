@@ -83,13 +83,14 @@ public class AddressBookApp {
                     addPerson.viewByCityOrState();
                     break;
                 case 8:
-                    addPerson.writeInJSON();
+                    //addPerson.writeInJSON();
                     break;
                 case 9:
-                    addPerson.writeInCSVFile();
+                    //addPerson.writeInCSVFile();
                     break;
                 case 10:
-                    addPerson.writeInGSON();
+                    //addPerson.writeInGSON();
+                    addPerson.start();
                     break;
                 case 11:
                     flag = 2;

@@ -7,7 +7,7 @@ import com.bridgelabz.addressbook.utility.JSONFileOperation;
 import java.util.*;
 import java.util.regex.Pattern;
 
-public class AddressBook implements AddressBookInterface {
+public class AddressBook extends Thread implements AddressBookInterface {
     JSONFileOperation readFromJSON = new JSONFileOperation();
     CSVFileOperation csv = new CSVFileOperation();
     String JSON_FILE_PATH = "./src/main/resources/AddressBook.json";
@@ -266,13 +266,15 @@ public class AddressBook implements AddressBookInterface {
     /**
      * method for write in json file
      */
-    public void writeInJSON() {
+    public void run() {
         readFromJSON.writeJson(book, JSON_FILE_PATH);
+        csv.writeFile(book, CSV_FILE_PATH);
+        readFromJSON.writeGSON(book, GSON_FILE_PATH);
     }
 
-    public void writeInCSVFile() {
-        csv.writeFile(book, CSV_FILE_PATH);
-    }
+//    public void writeInCSVFile() {
+//        csv.writeFile(book, CSV_FILE_PATH);
+//    }
 
     public void readFromCSVFile() {
         book = csv.loadDataFromFile(CSV_FILE_PATH);
@@ -282,8 +284,8 @@ public class AddressBook implements AddressBookInterface {
         book = readFromJSON.readFromSimpleGSON(GSON_FILE_PATH);
     }
 
-    public void writeInGSON() {
-        readFromJSON.writeGSON(book, GSON_FILE_PATH);
-    }
+//    public void writeInGSON() {
+//        readFromJSON.writeGSON(book, GSON_FILE_PATH);
+//    }
 }
 

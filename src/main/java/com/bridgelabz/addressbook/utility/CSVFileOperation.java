@@ -1,6 +1,4 @@
 package com.bridgelabz.addressbook.utility;
-
-import com.bridgelabz.addressbook.exception.AddressBookException;
 import com.bridgelabz.addressbook.models.Person;
 import com.opencsv.CSVWriter;
 import com.opencsv.bean.CsvToBean;
@@ -17,7 +15,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
 
-public class CSVFileOperation {
+public class CSVFileOperation extends Thread {
 
     public List<Person> loadDataFromFile(String CSV_FILE_PATH) {
         List<Person> book;

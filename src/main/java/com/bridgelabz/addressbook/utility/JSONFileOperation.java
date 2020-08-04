@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class JSONFileOperation {
+public class JSONFileOperation extends Thread {
     @SuppressWarnings("unchecked")
     public void writeJson(List<Person> book, String filePath) {
         JSONArray personDetails = new JSONArray();
