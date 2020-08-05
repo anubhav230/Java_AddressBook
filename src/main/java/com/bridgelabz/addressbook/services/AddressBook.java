@@ -1,5 +1,6 @@
 package com.bridgelabz.addressbook.services;
 
+import com.bridgelabz.addressbook.dboperation.DBOperation;
 import com.bridgelabz.addressbook.models.Person;
 import com.bridgelabz.addressbook.utility.CSVFileOperation;
 import com.bridgelabz.addressbook.utility.JSONFileOperation;
@@ -8,6 +9,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 public class AddressBook extends Thread implements AddressBookInterface {
+    DBOperation dbOperation = new DBOperation();
     JSONFileOperation readFromJSON = new JSONFileOperation();
     CSVFileOperation csv = new CSVFileOperation();
     String JSON_FILE_PATH = "./src/main/resources/AddressBook.json";
@@ -107,6 +109,8 @@ public class AddressBook extends Thread implements AddressBookInterface {
             addCity();
             addZip();
             book.add(person);
+            dbOperation.insertData(person.getFirstName(), person.getLastName(), person.getMobileNumber(),
+                    person.getState(), person.getCity(), person.getZip());
         }
     }
 
@@ -134,6 +138,7 @@ public class AddressBook extends Thread implements AddressBookInterface {
      */
     public void print() {
         book.forEach(System.out::println);
+        dbOperation.select();
     }
 
     /**
@@ -266,15 +271,13 @@ public class AddressBook extends Thread implements AddressBookInterface {
     /**
      * method for write in json file
      */
-    public void run() {
+    public void writeInJSON() {
         readFromJSON.writeJson(book, JSON_FILE_PATH);
-        csv.writeFile(book, CSV_FILE_PATH);
-        readFromJSON.writeGSON(book, GSON_FILE_PATH);
     }
 
-//    public void writeInCSVFile() {
-//        csv.writeFile(book, CSV_FILE_PATH);
-//    }
+    public void writeInCSVFile() {
+        csv.writeFile(book, CSV_FILE_PATH);
+    }
 
     public void readFromCSVFile() {
         book = csv.loadDataFromFile(CSV_FILE_PATH);
@@ -284,8 +287,9 @@ public class AddressBook extends Thread implements AddressBookInterface {
         book = readFromJSON.readFromSimpleGSON(GSON_FILE_PATH);
     }
 
-//    public void writeInGSON() {
-//        readFromJSON.writeGSON(book, GSON_FILE_PATH);
-//    }
+    public void writeInGSON() {
+        readFromJSON.writeGSON(book, GSON_FILE_PATH);
+    }
+
 }
 
