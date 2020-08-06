@@ -1,6 +1,6 @@
 package com.bridgelabz.addressbook.services;
 
-import com.bridgelabz.addressbook.dboperation.DBOperation;
+import com.bridgelabz.addressbook.config.DBOperation;
 import com.bridgelabz.addressbook.models.Person;
 import com.bridgelabz.addressbook.utility.CSVFileOperation;
 import com.bridgelabz.addressbook.utility.JSONFileOperation;
@@ -329,6 +329,4 @@ public class AddressBook extends Thread implements AddressBookInterface {
         String firstName = scanner.next();
         dbOperation.deletePerson(firstName);
     }
-
 }
-
