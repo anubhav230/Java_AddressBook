@@ -97,4 +97,16 @@ public class DBOperation {
             e.printStackTrace();
         }
     }
+
+    public void deletePerson(String name) {
+        try {
+            Class.forName(path);
+            Connection con = DriverManager.getConnection(url, uid, password);
+            Statement statement = con.createStatement();
+            String Query = "delete from person where FirstName='"+name+"'";
+            statement.executeUpdate(Query);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

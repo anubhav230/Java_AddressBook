@@ -2,6 +2,7 @@ package com.bridgelabz.addressbook.main;
 
 import com.bridgelabz.addressbook.services.AddressBook;
 
+import java.util.Calendar;
 import java.util.Scanner;
 
 public class AddressBookApp {
@@ -43,7 +44,8 @@ public class AddressBookApp {
                     " 9 = Write in CSV\n" +
                     " 10 = Write in JSON With GSON library\n" +
                     " 11 Edit in DataBase\n" +
-                    " 12 = Quit");
+                    " 12 Delete person from DataBase\n" +
+                    " 13 = Quit");
             int choice2 = scanner.nextInt();
             switch (choice2) {
                 case 1:
@@ -99,6 +101,9 @@ public class AddressBookApp {
                     addPerson.editInDB();
                     break;
                 case 12:
+                    addPerson.deletePersonData();
+                    break;
+                case 13:
                     flag = 2;
                     break;
             }

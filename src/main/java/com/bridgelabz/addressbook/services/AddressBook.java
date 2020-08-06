@@ -167,9 +167,7 @@ public class AddressBook extends Thread implements AddressBookInterface {
             switch (input) {
                 case 1:
                     System.out.println("Enter mobile number");
-                    //Long mobileNumber = scanner.nextLong();
                     book.get(index).setMobileNumber(scanner.nextLong());
-                    //dbOperation.EditData(firstName, mobileNumber);
                     break;
                 case 2:
                     System.out.println("Enter State");
@@ -324,6 +322,12 @@ public class AddressBook extends Thread implements AddressBookInterface {
                 dbOperation.editData(firstName, zip);
                 break;
         }
+    }
+
+    public void deletePersonData() {
+        System.out.println("Enter first name of the person for updating details");
+        String firstName = scanner.next();
+        dbOperation.deletePerson(firstName);
     }
 
 }
