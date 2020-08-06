@@ -167,7 +167,9 @@ public class AddressBook extends Thread implements AddressBookInterface {
             switch (input) {
                 case 1:
                     System.out.println("Enter mobile number");
+                    //Long mobileNumber = scanner.nextLong();
                     book.get(index).setMobileNumber(scanner.nextLong());
+                    //dbOperation.EditData(firstName, mobileNumber);
                     break;
                 case 2:
                     System.out.println("Enter State");
@@ -289,6 +291,39 @@ public class AddressBook extends Thread implements AddressBookInterface {
 
     public void writeInGSON() {
         readFromJSON.writeGSON(book, GSON_FILE_PATH);
+    }
+
+    public void editInDB() {
+        System.out.println("Enter first name of the person for updating details");
+        String firstName = scanner.next();
+        System.out.println("Choose option: \n" +
+                " 1 = Edit mobile number\n" +
+                " 2 = Edit State\n" +
+                " 3 = Edit city\n" +
+                " 4 = Edit zip");
+        int input = scanner.nextInt();
+        switch (input) {
+            case 1:
+                System.out.println("Enter mobile number");
+                Long mobileNumber = scanner.nextLong();
+                dbOperation.editData(firstName, mobileNumber);
+                break;
+            case 2:
+                System.out.println("Enter State");
+                String state = scanner.next();
+                dbOperation.editData(firstName, 2, state);
+                break;
+            case 3:
+                System.out.println("Enter city");
+                String city = scanner.next();
+                dbOperation.editData(firstName, 3, city);
+                break;
+            case 4:
+                System.out.println("Enter zip");
+                int zip = scanner.nextInt();
+                dbOperation.editData(firstName, zip);
+                break;
+        }
     }
 
 }

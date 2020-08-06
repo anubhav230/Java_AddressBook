@@ -1,5 +1,6 @@
 package com.bridgelabz.addressbook.dboperation;
 
+import java.rmi.registry.LocateRegistry;
 import java.sql.*;
 
 public class DBOperation {
@@ -48,6 +49,50 @@ public class DBOperation {
                 System.out.println("record not found");
             else
                 System.out.println("Record Displayed");
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void editData(String name , long mobileNumber) {
+        try {
+            Class.forName(path);
+            Connection con = DriverManager.getConnection(url, uid, password);
+            Statement statement = con.createStatement();
+            String Query = "update person set MobileNumber= "+mobileNumber+" where FirstName='"+name+"'";
+            statement.executeUpdate(Query);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void editData(String name , int zip) {
+        try {
+            Class.forName(path);
+            Connection con = DriverManager.getConnection(url, uid, password);
+            Statement statement = con.createStatement();
+            String Query = "update person set Zip= "+zip+" where FirstName='"+name+"'";
+            statement.executeUpdate(Query);
+        } catch (ClassNotFoundException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void editData(String name , int field, String value) {
+        try {
+            Class.forName(path);
+            Connection con = DriverManager.getConnection(url, uid, password);
+            Statement statement = con.createStatement();
+            switch (field) {
+                case 2:
+                    String Query = "update person set State= '"+value+"' where FirstName='"+name+"'";
+                    statement.executeUpdate(Query);
+                    break;
+                case 3:
+                    String Query2 = "update person set City= '"+value+"' where FirstName='"+name+"'";
+                    statement.executeUpdate(Query2);
+                    break;
+            }
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }

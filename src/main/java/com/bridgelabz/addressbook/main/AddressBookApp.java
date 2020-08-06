@@ -42,7 +42,8 @@ public class AddressBookApp {
                     " 8 = Write in JSON\n" +
                     " 9 = Write in CSV\n" +
                     " 10 = Write in JSON With GSON library\n" +
-                    " 11 = Quit");
+                    " 11 Edit in DataBase\n" +
+                    " 12 = Quit");
             int choice2 = scanner.nextInt();
             switch (choice2) {
                 case 1:
@@ -95,6 +96,9 @@ public class AddressBookApp {
                     addPerson.writeInGSON();
                     break;
                 case 11:
+                    addPerson.editInDB();
+                    break;
+                case 12:
                     flag = 2;
                     break;
             }
